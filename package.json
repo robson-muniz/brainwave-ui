@@ -6,7 +6,8 @@
     "dev": "vite --port 3000",
     "build": "vite build && tsc",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "json-server": "json-server src/data/db.json --port 8000"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.6",
@@ -28,6 +29,7 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
     "jsdom": "^27.0.0",
+    "json-server": "^1.0.0-beta.5",
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
