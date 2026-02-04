@@ -16,7 +16,7 @@ export const Route = createFileRoute("/ideas/")({
         content: "Brainwave - Your IDEA Hub",
       },
     ],
-    title: "Brainwave - Your IDEA Hub",
+    title: "Brainwave - Ideas",
   }),
   component: IdeasPage,
   loader: async ({ context: { queryClient } }) => {
@@ -29,6 +29,7 @@ export function IdeasPage() {
 
   return (
     <div className="p-4">
+      <title>Brainwave - Ideas</title>
       <h1 className="text-2xl font-bold mb-4">Ideas</h1>
       <div className="grid gap-4">
         {ideas.map((idea) => (
