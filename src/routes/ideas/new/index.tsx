@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import type { Idea } from '@/types'
 import { createIdea } from '@/api/ideas'
 import { FormEvent, useState } from 'react'
@@ -48,7 +48,10 @@ function NewIdeaPage() {
 
 
   return <div className='space-y-6'>
-    <h1 className='text-3xl font-bold mb-6' >Create New Idea</h1>
+
+    <div className='flex justify-between items-center mb-4'>
+      <h1 className='text-3xl font-bold'>Create New Idea</h1>
+    </div>
     <form onSubmit={handleSubmit} className='space-y-4'>
       <div className='space-y-2'>
         <label htmlFor='title' className='block text-sm font-medium text-gray-700'>Title</label>

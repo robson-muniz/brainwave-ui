@@ -1,6 +1,5 @@
 import { HeadContent, Link, Outlet, createRootRouteWithContext } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { QueryClient } from '@tanstack/react-query'
 import Header from '../components/Header'
 
@@ -38,17 +37,7 @@ function RootLayout() {
           <Outlet />
         </div>
       </main>
-      <TanStackDevtools
-        config={{
-          position: 'bottom-right',
-        }}
-        plugins={[
-          {
-            name: 'Tanstack Router',
-            render: TanStackRouterDevtoolsPanel,
-          },
-        ]}
-      />
+      <TanStackRouterDevtools position="bottom-right" />
     </div>
   )
 }

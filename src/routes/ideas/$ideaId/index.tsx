@@ -37,6 +37,14 @@ function ideaDetalPage() {
     <Link to='/ideas' className='text-blue-500 hover:underline block mb-4'>Back to ideas</Link>
     <h2 className='text-4xl font-bold mb-4'>{idea.data.title}</h2>
     <p className='m-2'>{idea.data.description}</p>
-    <button onClick={handleDelete} disabled={isPending} className='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 disabled:bg-red-300'>{isPending ? 'Deleting...' : 'Delete'}</button>
+    {/* {Edit Link} */}
+    <Link
+      to={`/ideas/$ideaId/edit`}
+      params={{ ideaId: idea.data.id }}
+      className='inline-block text-sm bg-yellow-500 hover:bg-yellow-600 text-white mt-4 mr-2 px-4 py-2 rounded transition'>Edit</Link>
+
+
+    {/* {Delete Button} */}
+    <button onClick={handleDelete} disabled={isPending} className='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 disabled:bg-red-300 mt-4 mr-2'>{isPending ? 'Deleting...' : 'Delete'}</button>
   </div>
 }
