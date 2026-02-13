@@ -2,6 +2,11 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import type { Idea } from '@/types'
 import { createIdea } from '@/api/ideas'
 import { FormEvent, useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+
+
+
+
 export const Route = createFileRoute('/ideas/new/')({
   component: NewIdeaPage,
 })
@@ -15,6 +20,13 @@ function NewIdeaPage() {
   const [loading, setLoading] = useState('')
   const [tags, setTags] = useState('')
 
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: createIdea,
+    onSuccess: () => {
+      navigate({ to: '/ideas' })
+    }
+  })
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setLoading('true')
@@ -23,10 +35,7 @@ function NewIdeaPage() {
         title,
         summary,
         description,
-        content: description,
         tags: tags.split(',').map(t => t.trim()).filter(Boolean),
-        createdAt: new Date().toISOString(),
-        user: 'user-1',
       })
       navigate({ to: '/ideas' })
     } catch (error) {
@@ -57,7 +66,12 @@ function NewIdeaPage() {
         <label htmlFor='tags' className='block text-sm font-medium text-gray-700'>Tags</label>
         <input type='text' id='tags' value={tags} onChange={(e) => setTags(e.target.value)} className='w-full px-3 py-2 border border-gray-300 rounded-md' />
       </div>
-      <button type='submit' className='w-full px-3 py-2 bg-blue-600 text-white rounded-md'>Create Idea</button>
+      <button
+        type='submit'
+        disabled={isPending}
+        className='w-full px-3 py-2 bg-blue-600 text-white rounded-md'>
+        {isPending ? 'Creating...' : 'Create Idea'}
+      </button>
     </form>
   </div>
 }
